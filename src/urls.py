@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from accounts import views as accounts_views
+from hire import views as hire_views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -23,6 +24,7 @@ urlpatterns = [
     url(r'^signup/$', accounts_views.signup, name='signup'),
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
-    url(r'^$', accounts_views.home, name='home'),
-    
+    url(r'^services/$', hire_views.home, name='home'),
+    url(r'^services/(?P<pk>\d+)/$', hire_views.list_services, name='serve_list'),
+  
 ]
