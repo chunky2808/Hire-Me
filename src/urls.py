@@ -29,5 +29,7 @@ urlpatterns = [
     url(r'^services/(?P<pk>\d+)/$', hire_views.list_services, name='serve_list'),
     url(r'^services/(?P<pk>\d+)/new/$', hire_views.list_services_new, name='new_serve_list'),
     url(r'^services/(?P<pk>\d+)/delete/$', hire_views.delete_main, name='delete'),
+    url(r'^services/(?P<pk>\d+)/(?P<Service_category_pk>\d+)/review/$', hire_views.review, name='review'),
+    
     
 ]

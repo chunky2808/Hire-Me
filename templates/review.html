@@ -1,0 +1,36 @@
+
+{% extends 'base.html' %}
+	
+     {% block breadcrumb %}
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Services</a></li>
+        <li class="breadcrumb-item"><a href="#"> {{ service.name }} </a></li>
+        <li class="breadcrumb-item"><a href="#"> Review </a></li>
+       {% endblock %}
+
+	 {% block content %}  
+   <a href = "#" < button type="submit" class="btn btn-primary"> New</button></a>
+   <p></p>
+    <table class="table">
+        <thead class="thead-inverse">
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Location</th>
+           </tr>
+        </thead>
+        <tbody>
+           {% for list in list %}
+            <tr>
+              <td>
+               <a href="#">{{ list.namee }}</a>
+                <small class="text-muted d-block"></small>
+              </td>
+              <td class="align-middle">{{list.price}}</td>
+              <td class="align-middle">{{ list.location}}</td>
+              <td></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+     {% endblock %}     

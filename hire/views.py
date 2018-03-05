@@ -52,3 +52,10 @@ def delete_main(request,pk):
 	ser = Services.objects.all()
 	return render(request,'service.html',{'services':ser})
 
+
+#	
+
+
+
+
+
