@@ -25,6 +25,9 @@ urlpatterns = [
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
     url(r'^services/$', hire_views.home, name='home'),
-    url(r'^services/(?P<pk>\d+)/$', hire_views.list_services, name='serve_list'),
     url(r'^services/new/$', hire_views.add_service, name='new_service'),
+    url(r'^services/(?P<pk>\d+)/$', hire_views.list_services, name='serve_list'),
+    url(r'^services/(?P<pk>\d+)/new/$', hire_views.list_services_new, name='new_serve_list'),
+    url(r'^services/(?P<pk>\d+)/delete/$', hire_views.delete_main, name='delete'),
+    
 ]

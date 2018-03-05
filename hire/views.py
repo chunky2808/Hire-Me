@@ -4,7 +4,8 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Services,Service_category
-from .forms import NewTopicForm
+from .forms import NewTopicForm,NewTopicForm2
+from django.contrib.auth.decorators import login_required
 
 def home(request):
 	ser = Services.objects.all()
@@ -13,26 +14,41 @@ def home(request):
 def list_services(request, pk):
 	ser = get_object_or_404(Services,pk=pk)
 	li = ser.serces.order_by('-last_updated')
-	#li = get_object_or_404(Service_category,pk=pk)
-	#print(pk)
-	#print(li.name)
 	return render(request,'list_service.html',{'list':li , 'service' :ser})
 
-
+@login_required
 def add_service(request):
 	ser = Services.objects.all()
-	user = User.objects.first()
+	user = User.objects.get()
 	if request.method == 'POST':
 		form = NewTopicForm(request.POST)
 		if form.is_valid():
 			new = form.save(commit=False)
-			#new.name = name
-            # new.category = category
 			new.save()
-            # topic.save()
-			return render(request,'service.html',{'services':ser})  # TODO: redirect to the created topic page
+			return render(request,'service.html',{'services':ser}) 
 	else:
 		form = NewTopicForm()
 	return render(request, 'new_service.html', {'services':ser , 'form' : form})
-	
+
+
+@login_required	
+def list_services_new(request,pk):
+	ser = get_object_or_404(Services,pk=pk)
+	li = ser.serces.order_by('-last_updated')
+	if request.method == 'POST':
+		form = NewTopicForm2(request.POST)
+		if form.is_valid():
+			new = form.save(commit=False)
+			new.service = ser
+			new.save()
+			return render(request,'list_service.html',{'list':li , 'service' :ser})
+	else:
+		form = NewTopicForm2()
+	return render(request, 'new_list_services.html', {'form' : form})
+
+def delete_main(request,pk):
+	ser = get_object_or_404(Services,pk=pk)
+	ser.delete()
+	ser = Services.objects.all()
+	return render(request,'service.html',{'services':ser})
 
