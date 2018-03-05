@@ -26,7 +26,6 @@ class Service_category(models.Model):
 
 class Page(models.Model):
 	Review = models.TextField(max_length = 4000)
-	service = models.ForeignKey(Services,related_name = 'cer',default = False)
 	service_cat = models.ForeignKey(Service_category,related_name = 'ser_cat',default = False)
 	started_by = models.ForeignKey(User)
 

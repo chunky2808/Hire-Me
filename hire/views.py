@@ -53,8 +53,10 @@ def delete_main(request,pk):
 	return render(request,'service.html',{'services':ser})
 
 
-#	
-
+def review(request,pk,Service_category_pk):
+	ser = get_object_or_404(Service_category,service__pk=pk,pk =Service_category_pk)
+	print(ser)
+	return render(request,'review.html',{'service' : ser})
 
 
 
