@@ -1,5 +1,5 @@
 from django import forms
-from .models import Services,Service_category
+from .models import Services,Service_category,Page
 
 class NewTopicForm(forms.ModelForm):
     #category = forms.CharField(widget=forms.Textarea(), max_length=400)
@@ -12,3 +12,10 @@ class NewTopicForm2(forms.ModelForm):
 	class Meta:
 		model =  Service_category
 		fields = ['namee','location','desc','price']
+
+
+class NewTopicForm3(forms.ModelForm):
+	Review = forms.CharField(widget=forms.Textarea())
+	class Meta:
+		model =  Page
+		fields = ['Review']

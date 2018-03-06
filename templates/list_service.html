@@ -22,7 +22,7 @@
            {% for list in list %}
             <tr>
               <td>
-               <a href="#">{{ list.namee }}</a>
+               <a href="{% url 'review' service.pk list.pk %}">{{ list.namee }}</a>
                 <small class="text-muted d-block"></small>
               </td>
               <td class="align-middle">{{list.price}}</td>

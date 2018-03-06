@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.shortcuts import render,get_object_or_404,redirect
-from .models import Services,Service_category
-from .forms import NewTopicForm,NewTopicForm2
+from .models import Services,Service_category,Page
+from .forms import NewTopicForm,NewTopicForm2,NewTopicForm3
 from django.contrib.auth.decorators import login_required
 
 def home(request):
@@ -55,9 +55,26 @@ def delete_main(request,pk):
 
 def review(request,pk,Service_category_pk):
 	ser = get_object_or_404(Service_category,service__pk=pk,pk =Service_category_pk)
-	print(ser)
-	return render(request,'review.html',{'service' : ser})
+	er = Page.objects.filter(service_main=pk,service_cat=Service_category_pk)
+	res = get_object_or_404(Services,pk=pk)
+	print(er)
+	return render(request,'review.html',{'service' : ser, 'revice' : res, 'review' : er,})
 
-
+@login_required
+def review_new(request,pk,Service_category_pk):
+	ser = get_object_or_404(Service_category,service__pk=pk,pk =Service_category_pk)
+	res = get_object_or_404(Services,pk=pk)
+	if request.method == 'POST':
+		form = NewTopicForm3(request.POST)
+		if form.is_valid():
+			new = form.save(commit=False)
+			new.started_by = User.objects.first()
+			new.service_main = res
+			new.service_cat = ser
+			new.save()
+			return render(request,'review.html',{'service' : ser, 'revice' : res})
+	else:
+		form = NewTopicForm3()
+	return render(request, 'new_list_services.html', {'form' : form})
 
 
