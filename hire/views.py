@@ -19,7 +19,7 @@ def list_services(request, pk):
 @login_required
 def add_service(request):
 	ser = Services.objects.all()
-	user = User.objects.get()
+	user = User.objects.first()
 	if request.method == 'POST':
 		form = NewTopicForm(request.POST)
 		if form.is_valid():
