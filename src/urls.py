@@ -21,6 +21,7 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', hire_views.mainee,name = 'maiee'),
     url(r'^signup/$', accounts_views.signup, name='signup'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),  # <--
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
@@ -32,5 +33,6 @@ urlpatterns = [
     url(r'^services/(?P<pk>\d+)/delete/$', hire_views.delete_main, name='delete'),
     url(r'^services/(?P<pk>\d+)/(?P<Service_category_pk>\d+)/review/$', hire_views.review, name='review'),
     url(r'^services/(?P<pk>\d+)/(?P<Service_category_pk>\d+)/review/new/$', hire_views.review_new, name='review_new'),
+    url(r'^worker_page/(?P<pk>\d+)/$', hire_views.worker_page, name='worker_page'),
     
 ]

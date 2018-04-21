@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'social_django',
     'accounts',
     'hire',
+    'geoposition',
 ]
 
 MIDDLEWARE = [
@@ -132,6 +133,8 @@ AUTHENTICATION_BACKENDS = (
 )
 
 
+
+
 SOCIAL_AUTH_GITHUB_KEY = ''
 SOCIAL_AUTH_GITHUB_SECRET = ''
 
@@ -141,6 +144,16 @@ SOCIAL_AUTH_TWITTER_SECRET = ''
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY =''  #Paste CLient Key
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '' #Paste Secret Key
 
+GEOPOSITION_GOOGLE_MAPS_API_KEY = ''
+
+GEOPOSITION_MAP_OPTIONS = {
+    'minZoom': 3,
+    'maxZoom': 15,
+}
+
+GEOPOSITION_MARKER_OPTIONS = {
+    'cursor': 'move'
+}
 
 
 
@@ -148,9 +161,15 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '' #Paste Secret Key
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/rot')
+
 LOGOUT_REDIRECT_URL = 'home'
 LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'home'
+

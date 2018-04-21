@@ -1,0 +1,16 @@
+
+{% extends 'base.html' %}
+	
+     {% block breadcrumb %}
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Services</a></li>
+       {% endblock %}
+	 {% block content %}  
+    <p></p>
+    {{service.namee}}
+    <p></p>
+    {{service.price}}
+    <p></p>
+    {{service.service}}
+    <p></p>
+    {{service.location}}
+    {% endblock %}

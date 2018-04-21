@@ -13,6 +13,7 @@
 	 {% block content %}  
    <a href = "{% url 'review_new' revice.pk service.pk %}" < button type="submit" class="btn btn-primary"> New</button></a>
    <p></p>
+   <a href = "{% url 'worker_page' service.pk %}" < button type="submit" class="btn btn-success"> Visit Page</button></a>
    {% for review in review %}
     <div class="card mb-2">
       <div class="card-body p-3">

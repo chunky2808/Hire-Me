@@ -63,18 +63,34 @@ def review(request,pk,Service_category_pk):
 @login_required
 def review_new(request,pk,Service_category_pk):
 	ser = get_object_or_404(Service_category,service__pk=pk,pk =Service_category_pk)
+	er = Page.objects.filter(service_main=pk,service_cat=Service_category_pk)
 	res = get_object_or_404(Services,pk=pk)
 	if request.method == 'POST':
 		form = NewTopicForm3(request.POST)
 		if form.is_valid():
 			new = form.save(commit=False)
-			new.started_by = User.objects.first()
+			new.started_by = request.user
 			new.service_main = res
 			new.service_cat = ser
 			new.save()
-			return render(request,'review.html',{'service' : ser, 'revice' : res})
+			return render(request,'review.html',{'service' : ser, 'revice' : res, 'review' : er,})
 	else:
 		form = NewTopicForm3()
 	return render(request, 'new_list_services.html', {'form' : form})
 
 
+
+def mainee(request):
+	return render(request,'main.html')
+
+
+def worker_page(request,pk):
+	ser = get_object_or_404(Service_category,pk=pk)
+	return render(request,'worker_page.html',{'service':ser})
+	
+
+
+
+
+# def home(request):
+# 	return render(request,'main.html')

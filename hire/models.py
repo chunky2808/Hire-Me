@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from geoposition.fields import GeopositionField
 
 
 class Services(models.Model):
@@ -13,12 +14,13 @@ class Services(models.Model):
 
 
 class Service_category(models.Model):
-	namee = models.CharField(max_length = 100)
+	namee = models.CharField(max_length = 100,unique=True)
 	desc = models.CharField(max_length = 500)
 	price = models.CharField(max_length = 10)
 	location = models.CharField(max_length = 50)
 	service = models.ForeignKey(Services,related_name = 'serces')
 	last_updated = models.DateTimeField(auto_now_add=True)
+	position = GeopositionField(null=True)
 	
 	def __str__(self):
 		return self.namee
@@ -32,5 +34,6 @@ class Page(models.Model):
 
 	def __str__(self):
 		return self.Review
+		
 
    
