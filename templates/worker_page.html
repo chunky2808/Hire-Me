@@ -1,5 +1,6 @@
 
 {% extends 'base.html' %}
+
 	
      {% block breadcrumb %}
         <li class="breadcrumb-item"><a href="{% url 'home' %}">Services</a></li>
@@ -13,4 +14,12 @@
     {{service.service}}
     <p></p>
     {{service.location}}
+    <p></p>
+    {{service.position}}
+    <p></p>
+    {{service.upvotes}} 
+    <center><button id="clap" class="btn btn-success">Upvote</button></center>
+    <p></p>
+    {{service.downvotes}} 
+   <center> <button id="clap" class="btn btn-success">Downvote</button></center>
     {% endblock %}

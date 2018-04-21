@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'social_django',
     'accounts',
     'hire',
+    'easy_maps',
     'geoposition',
 ]
 
@@ -144,6 +145,7 @@ SOCIAL_AUTH_TWITTER_SECRET = ''
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY =''  #Paste CLient Key
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '' #Paste Secret Key
 
+#maps
 GEOPOSITION_GOOGLE_MAPS_API_KEY = ''
 
 GEOPOSITION_MAP_OPTIONS = {
@@ -154,8 +156,13 @@ GEOPOSITION_MAP_OPTIONS = {
 GEOPOSITION_MARKER_OPTIONS = {
     'cursor': 'move'
 }
+#maps
 
-
+#easy maps
+EASY_MAPS_GOOGLE_MAPS_API_KEY = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ___0123456789'
+ASY_MAPS_CENTER = (-41.3, 32)
+EASY_MAPS_GEOCODE = 'example.custom_geocode'    
+#easy maps
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -173,3 +180,5 @@ LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'home'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
