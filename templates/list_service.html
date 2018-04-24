@@ -10,29 +10,16 @@
    <a href = "{% url 'new_serve_list' service.pk %}" < button type="submit" class="btn btn-primary"> New</button></a>
    <a href = "{% url 'delete' service.pk %}" < button type="submit" class="btn btn-danger"> Delete</button></a>
     <p></p>
-
-    
-    <table class="table">
-        <thead class="thead-inverse">
-          <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Location</th>
-           </tr>
-        </thead>
-        <tbody>
            {% for list in list %}
-            <tr>
-              <td>
-               <a href="{% url 'review' service.pk list.pk %}">{{ list.namee }}</a>
-                <small class="text-muted d-block"></small>
-              </td>
-              <td class="align-middle">{{list.price}}</td>
-              <td class="align-middle">{{ list.location}}</td>
-              <td></td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+             <div class="card-columns">
+              <div class="card">
+              <div class="card-body">
+              <h4 class="card-title"><a href="{% url 'review' service.pk list.pk %}">{{ list.namee }}</a></h4>
+              <p class="card-text">{{list.price}}</p>
+              <p class="card-text">{{ list.location}}</p>
+              </div>
 
-     {% endblock %}     
+              </div>
+            {% endfor %}
+            </div>
+            {% endblock %}     

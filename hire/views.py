@@ -6,9 +6,13 @@ from django.shortcuts import render,get_object_or_404,redirect
 from .models import Services,Service_category,Page
 from .forms import NewTopicForm,NewTopicForm2,NewTopicForm3
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 def home(request):
 	ser = Services.objects.all()
+	query = request.GET.get('search_box')
+	if query:
+		ser = Services.objects.filter(Q(name__icontains=query)| Q(category__icontains=query) |Q(last_updated__icontains=query))
 	return render(request,'service.html',{'services':ser})
 
 def list_services(request, pk):
@@ -88,7 +92,6 @@ def worker_page(request,pk):
 	ser = get_object_or_404(Service_category,pk=pk)
 	return render(request,'worker_page.html',{'service':ser})
 	
-
 
 
 
