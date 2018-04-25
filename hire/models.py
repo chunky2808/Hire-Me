@@ -15,7 +15,7 @@ class Services(models.Model):
 
 class Service_category(models.Model):
 	namee = models.CharField(max_length = 100,unique=True)
-	desc = models.CharField(max_length = 500)
+	desc = models.CharField(max_length = 150)
 	price = models.CharField(max_length = 10)
 	location = models.CharField(max_length = 50)
 	service = models.ForeignKey(Services,related_name = 'serces')

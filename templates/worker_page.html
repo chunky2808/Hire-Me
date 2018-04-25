@@ -26,9 +26,14 @@
     <li class="list-group-item">{{service.service}}</li>
      <li class="list-group-item">{{service.position}}</li>
       <li class="list-group-item">{{service.upvotes}}
-      <center><button id="clap" class="btn btn-success">Upvote</button></center></li>
+      <center><button id="clap" class="btn btn-success" onclick="myFunction()">Upvote</button></center></li>
        <li class="list-group-item">{{service.downvotes}}
-       <center> <button id="clap" class="btn btn-success">Downvote</button></center></li>
+       <center> <button id="clap" class="btn btn-success" onclick="myFunction2()">Downvote</button></center></li>
+       <script>
+function myFunction() {
+  service.upvotes = service.upvotes + 1
+}
+</script>
 
       <a href="#" class="btn btn-primary">See Profile</a>
     </div>
