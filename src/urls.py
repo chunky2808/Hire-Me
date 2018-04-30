@@ -34,5 +34,7 @@ urlpatterns = [
     url(r'^services/(?P<pk>\d+)/(?P<Service_category_pk>\d+)/review/$', hire_views.review, name='review'),
     url(r'^services/(?P<pk>\d+)/(?P<Service_category_pk>\d+)/review/new/$', hire_views.review_new, name='review_new'),
     url(r'^worker_page/(?P<pk>\d+)/$', hire_views.worker_page, name='worker_page'),
-       
+    url(r'^increment/(?P<pk>\d+)/(?P<Service_category_pk>\d+)/review/$', hire_views.increment, name='increment'),
+    url(r'^decrement/(?P<pk>\d+)/(?P<Service_category_pk>\d+)/review/$', hire_views.decrement, name='decrement'),
+           
 ]

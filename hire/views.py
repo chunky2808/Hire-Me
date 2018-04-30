@@ -92,8 +92,23 @@ def worker_page(request,pk):
 	ser = get_object_or_404(Service_category,pk=pk)
 	return render(request,'worker_page.html',{'service':ser})
 	
+def increment(request,pk,Service_category_pk):
+	print("hi")
+	ser = get_object_or_404(Service_category,service__pk=pk,pk =Service_category_pk)
+	er = Page.objects.filter(service_main=pk,service_cat=Service_category_pk)
+	res = get_object_or_404(Services,pk=pk)
+	par = ser.upvotes
+	par = par +1
+	Service_category.objects.filter(namee=ser).update(upvotes = par)
+	return render(request,'review.html',{'service' : ser, 'revice' : res, 'review' : er,})
 
 
+def decrement(request,pk,Service_category_pk):
+	ser = get_object_or_404(Service_category,service__pk=pk,pk =Service_category_pk)
+	er = Page.objects.filter(service_main=pk,service_cat=Service_category_pk)
+	res = get_object_or_404(Services,pk=pk)
+	par = ser.downvotes
+	par = par -1
+	Service_category.objects.filter(namee=ser).update(downvotes = par)
+	return render(request,'review.html',{'service' : ser, 'revice' : res, 'review' : er,})
 
-# def home(request):
-# 	return render(request,'main.html')

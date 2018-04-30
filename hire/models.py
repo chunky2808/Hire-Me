@@ -21,12 +21,12 @@ class Service_category(models.Model):
 	service = models.ForeignKey(Services,related_name = 'serces')
 	last_updated = models.DateTimeField(auto_now_add=True)
 	position = GeopositionField(null=True)
-	upvotes = models.TextField(null=True)
-	downvotes = models.TextField(null=True)
+	upvotes = models.IntegerField(default = 0)
+	downvotes = models.IntegerField(default =0)
 	
 	def __str__(self):
 		return self.namee
-	
+
 
 class Page(models.Model):
 	Review = models.TextField(max_length = 4000)
@@ -36,6 +36,3 @@ class Page(models.Model):
 
 	def __str__(self):
 		return self.Review
-
-
-   
