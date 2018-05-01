@@ -36,3 +36,9 @@ class Page(models.Model):
 
 	def __str__(self):
 		return self.Review
+
+class verify(models.Model):
+	user = 	models.ForeignKey(User)
+	print(user.name)
+	aadhar = models.FileField(upload_to='Details/%s/' % user.name)
+	uploaded_at = models.DateTimeField(auto_now_add=True)

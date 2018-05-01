@@ -36,5 +36,7 @@ urlpatterns = [
     url(r'^worker_page/(?P<pk>\d+)/$', hire_views.worker_page, name='worker_page'),
     url(r'^increment/(?P<pk>\d+)/(?P<Service_category_pk>\d+)/review/$', hire_views.increment, name='increment'),
     url(r'^decrement/(?P<pk>\d+)/(?P<Service_category_pk>\d+)/review/$', hire_views.decrement, name='decrement'),
+    url(r'^user/$', hire_views.model_form_upload, name='model_form_upload'),
+    url(r'^hello/$', hire_views.hello, name='hello'),
            
 ]
