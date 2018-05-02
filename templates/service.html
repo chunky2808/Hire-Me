@@ -64,19 +64,27 @@ body {
 </form>
 
 <p></p>
- <table style="width:117%">
+ <table style="width:100%">
  {% for service in services %}
-<tr>
-<td><div class="card-columns">
-<div class="card">
-<div class="card-body">
-<h4 class="card-title"><a href="{% url 'serve_list' service.pk %}">  {{ service.name }}</a></h4>
- <p class="card-text">{{service.category}}</p>
-<p class="card-text">{{ service.last_updated}}</p></td>
-</div>
-</div>
+
+     {% cycle 'row' '' as row silent %}
+        {% if row %}<tr>{% endif %}
+            <div class="card-columns">
+            <td>
+            <div class="card">
+            <div class="card-body">
+            <h4 class="card-title"><a href="{% url 'serve_list' service.pk %}">  {{ service.name }}</a></h4>
+             <p class="card-text">{{service.category}}</p>
+            <p class="card-text">{{ service.last_updated}}</p>
+            </td>
+            </div>
+            </div>
+            </div>
+        {% if not row %}</tr>{% endif %}
+            
+
 {% endfor %}
-</tr>
-</table> 
-</div>
+</table>
+
+
 {% endblock %}     

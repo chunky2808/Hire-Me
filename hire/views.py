@@ -64,8 +64,10 @@ def review(request,pk,Service_category_pk):
 	ser = get_object_or_404(Service_category,service__pk=pk,pk =Service_category_pk)
 	er = Page.objects.filter(service_main=pk,service_cat=Service_category_pk)
 	res = get_object_or_404(Services,pk=pk)
-	print(er)
-	return render(request,'review.html',{'service' : ser, 'revice' : res, 'review' : er,})
+	print(ser.position)
+	lat = (ser.position).latitude
+	lon = (ser.position).longitude
+	return render(request,'review.html',{'service' : ser, 'revice' : res, 'review' : er, 'latitude' : lat , 'longitude' : lon})
 
 @login_required
 def review_new(request,pk,Service_category_pk):
@@ -88,7 +90,7 @@ def review_new(request,pk,Service_category_pk):
 
 
 def mainee(request):
-	return render(request,'main.html')
+	return render(request,'main2.html')
 
 
 def worker_page(request,pk):

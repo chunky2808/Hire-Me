@@ -17,6 +17,7 @@ class Service_category(models.Model):
 	namee = models.CharField(max_length = 100,unique=True)
 	desc = models.CharField(max_length = 150)
 	price = models.CharField(max_length = 10)
+	Address = models.CharField(max_length = 200,default = '')
 	location = models.CharField(max_length = 50)
 	service = models.ForeignKey(Services,related_name = 'serces')
 	last_updated = models.DateTimeField(auto_now_add=True)
@@ -33,6 +34,9 @@ class Page(models.Model):
 	service_cat = models.ForeignKey(Service_category,related_name = 'ser_cat',default = False)
 	service_main = models.ForeignKey(Services,related_name = 'ser_main',default = False)
 	started_by = models.ForeignKey(User)
+	last_updated = models.DateTimeField(auto_now_add=True)
+	helpful = models.IntegerField(default = 0)
+	unhelpful = models.IntegerField(default = 0)
 
 	def __str__(self):
 		return self.Review
