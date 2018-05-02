@@ -33,7 +33,7 @@ def list_services(request, pk):
 		dist = "%.3f" % dist
 		Service_category.objects.filter(namee=li['namee']).update(distance=dist)
 		print(dist)
-	li = ser.serces.order_by('-distance')
+	li = ser.serces.order_by('distance')
 	return render(request,'list_service.html',{'list':li , 'service' :ser})
 
 
