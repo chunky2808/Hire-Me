@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+  'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -164,9 +164,7 @@ ASY_MAPS_CENTER = (-41.3, 32)
 EASY_MAPS_GEOCODE = 'example.custom_geocode'    
 #easy maps
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
-#AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = 'accounts.User'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [

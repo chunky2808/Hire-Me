@@ -3,10 +3,7 @@
 {% block body %}
   <div class="container">
     <h2>Sign up</h2>
-    <form method="post" novalidate>
-     {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit" class="btn btn-primary">Create an account</button>
-    </form>
-  </div>
+    <a href = "{% url 'customer_signup' %}"><button type="button" class="btn btn-primary">Signup as Customer</button></a>
+    <p></p>
+  <a href = "{% url 'service_signup' %}"><button type="button" class="btn btn-primary">Signup as Service</button></a>
 {% endblock %}

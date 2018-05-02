@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from geoposition.fields import GeopositionField
+from src import settings
 
 
 class Services(models.Model):
@@ -33,7 +34,7 @@ class Page(models.Model):
 	Review = models.TextField(max_length = 4000)
 	service_cat = models.ForeignKey(Service_category,related_name = 'ser_cat',default = False)
 	service_main = models.ForeignKey(Services,related_name = 'ser_main',default = False)
-	started_by = models.ForeignKey(User)
+	started_by = models.ForeignKey(settings.AUTH_USER_MODEL)
 	last_updated = models.DateTimeField(auto_now_add=True)
 	helpful = models.IntegerField(default = 0)
 	unhelpful = models.IntegerField(default = 0)
@@ -42,7 +43,7 @@ class Page(models.Model):
 		return self.Review
 
 class verify(models.Model):
-	user = 	models.ForeignKey(User)
+	user = 	models.ForeignKey(settings.AUTH_USER_MODEL)
 	print(user.name)
 	aadhar = models.FileField(upload_to='Details/%s/' % user.name)
 	uploaded_at = models.DateTimeField(auto_now_add=True)

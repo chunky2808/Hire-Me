@@ -22,7 +22,12 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', hire_views.mainee,name = 'maiee'),
-    url(r'^signup/$', accounts_views.signup, name='signup'),
+
+    url(r'^accounts/', include('django.contrib.auth.urls')),
+    url(r'^accounts/signup/$', accounts_views.signup, name='signup'),
+    url(r'^accounts/signup/customer/$', accounts_views.CustomerSignUpView.as_view(), name='customer_signup'),
+    url(r'^accounts/signup/service/$', accounts_views.ServiceSignUpView.as_view(), name='service_signup'),
+
     url(r'^oauth/', include('social_django.urls', namespace='social')),  # <--
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
