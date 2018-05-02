@@ -73,6 +73,7 @@
 </div>
 </li>
      <li class="list-group-item">{{service.Address}}</li>
+     <li class="list-group-item">{{distance}} Km away</li>
       <li class="list-group-item">{{service.upvotes}}
       <center><a href="{% url 'increment' revice.pk service.pk %}"> <button type='button' id="clap" class="btn btn-success" >Upvote</button></a></center></li>
        <li class="list-group-item">{{service.downvotes}}

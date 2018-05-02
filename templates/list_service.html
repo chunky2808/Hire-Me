@@ -21,7 +21,8 @@
               <div class="card">
               <div class="card-body">
               <h4 class="card-title"><a href="{% url 'review' service.pk list.pk %}">{{ list.namee }}</a></h4>
-              <p class="card-text">{{list.price}}</p>
+              <p class="card-text">{{list.distance}} Km away</p>
+              <p class="card-text">{{list.price}}  per month</p>
               <p class="card-text">{{ list.location}}</p>
               </td>
             </div>

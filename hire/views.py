@@ -12,6 +12,8 @@ from PIL import Image
 from accounts.decorators import service_required,customer_required
 #from tesseract import image_to_string
 from django.contrib.auth import get_user_model
+from math import cos, asin, sqrt
+
 User = get_user_model()
 
 def home(request):
@@ -23,7 +25,15 @@ def home(request):
 
 def list_services(request, pk):
 	ser = get_object_or_404(Services,pk=pk)
-	li = ser.serces.order_by('-last_updated')
+	li = ser.serces.order_by('-last_updated').values()
+	for li in li:
+		lat = li['position'].latitude
+		lon = li['position'].longitude
+		dist = distance(float(lat),float(lon),float(request.user.position.latitude),float(request.user.position.longitude))#Haversine formula)
+		dist = "%.3f" % dist
+		Service_category.objects.filter(namee=li['namee']).update(distance=dist)
+		print(dist)
+	li = ser.serces.order_by('-distance')
 	return render(request,'list_service.html',{'list':li , 'service' :ser})
 
 
@@ -65,6 +75,8 @@ def delete_main(request,pk):
 	return render(request,'service.html',{'services':ser})
 
 
+@login_required
+@customer_required
 def review(request,pk,Service_category_pk):
 	ser = get_object_or_404(Service_category,service__pk=pk,pk =Service_category_pk)
 	er = Page.objects.filter(service_main=pk,service_cat=Service_category_pk)
@@ -72,9 +84,17 @@ def review(request,pk,Service_category_pk):
 	print(ser.position)
 	lat = (ser.position).latitude
 	lon = (ser.position).longitude
-	return render(request,'review.html',{'service' : ser, 'revice' : res, 'review' : er, 'latitude' : lat , 'longitude' : lon})
+	print(request.user.position.latitude)
+	print(request.user.position.longitude)
+	dist = distance(float(lat),float(lon),float(request.user.position.latitude),float(request.user.position.longitude))#Haversine formula)
+	dist = "%.3f" % dist
+	print(dist)
+	return render(request,'review.html',{'service' : ser, 'revice' : res, 'review' : er, 'latitude' : lat , 'longitude' : lon, 'distance' : dist})
 
+
+@csrf_exempt
 @login_required
+@customer_required
 def review_new(request,pk,Service_category_pk):
 	ser = get_object_or_404(Service_category,service__pk=pk,pk =Service_category_pk)
 	er = Page.objects.filter(service_main=pk,service_cat=Service_category_pk)
@@ -142,3 +162,13 @@ def hello(request):
 	# print(image_to_string(Image.open('/home/paras/Desktop/coding/my-project/Hire-Me!/Hire-Me/media/Details/None/123.png')))
 	# print(image_to_string(Image.open('/home/paras/Desktop/coding/my-project/Hire-Me!/Hire-Me/media/Details/None/123.png'), lang='eng'))
 	print("hi")
+
+
+#calculate distance between user and service provider
+def distance(lat1, lon1, lat2, lon2):#Haversine formula)
+    p = 0.017453292519943295     
+    a = 0.5 - cos((lat2 - lat1) * p)/2 + cos(lat1 * p) * cos(lat2 * p) * (1 - cos((lon2 - lon1) * p)) / 2
+    return 12742 * asin(sqrt(a))	
+
+#calculate distance between user and service provider
+

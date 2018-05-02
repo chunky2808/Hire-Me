@@ -8,6 +8,7 @@ class CustomerSignUpForm(UserCreationForm):
 
     class Meta(UserCreationForm.Meta):
         model = User
+        fields = ['username','position']
 
     @transaction.atomic
     def save(self):

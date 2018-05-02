@@ -18,13 +18,14 @@ class Service_category(models.Model):
 	namee = models.CharField(max_length = 100,unique=True)
 	desc = models.CharField(max_length = 150)
 	price = models.CharField(max_length = 10)
-	Address = models.CharField(max_length = 200,default = '')
+	Address = models.CharField(max_length = 200)
 	location = models.CharField(max_length = 50)
 	service = models.ForeignKey(Services,related_name = 'serces')
 	last_updated = models.DateTimeField(auto_now_add=True)
 	position = GeopositionField(null=True)
 	upvotes = models.IntegerField(default = 0)
 	downvotes = models.IntegerField(default =0)
+	distance = models.DecimalField(default=0.0,max_digits=25, decimal_places=3)
 	
 	def __str__(self):
 		return self.namee
