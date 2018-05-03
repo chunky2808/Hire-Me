@@ -9,8 +9,10 @@ class User(AbstractUser):
     is_service = models.BooleanField(default=False)
     is_verified = models.BooleanField(default=False)
     position = GeopositionField(null=True)
-    aadhar_no = models.IntegerField(unique=True)
-    aadhar_file = models.FileField(upload_to='Details/')
+    aadhar_no = models.IntegerField(unique=True,null=True)
+    aadhar_file = models.FileField(upload_to='Details/',null=True)
+    pref_time =  models.DateTimeField(null=True)
+    handle = models.CharField(max_length = 50,default='',null=True)
     
 class Customer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)

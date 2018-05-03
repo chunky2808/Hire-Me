@@ -22,7 +22,7 @@ class CustomerSignUpForm(UserCreationForm):
 class ServiceSignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = ['username','position','aadhar_no','aadhar_file']
+        fields = ['username','position','aadhar_no','aadhar_file','pref_time']
 
     @transaction.atomic
     def save(self, commit=True):

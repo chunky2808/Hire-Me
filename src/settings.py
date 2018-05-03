@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'social_django',
     'channels',
+    'chat_app',
     'accounts',
     'hire',
     'easy_maps',
