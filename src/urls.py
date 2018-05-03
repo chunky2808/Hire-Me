@@ -18,6 +18,10 @@ from django.contrib import admin
 from accounts import views as accounts_views
 from hire import views as hire_views
 from django.contrib.auth import views as auth_views
+from chat_app import views as chat_views
+from django.conf.urls.static import static
+
+from django.conf import settings
 
 
 urlpatterns = [
@@ -28,6 +32,10 @@ urlpatterns = [
     url(r'^accounts/signup/$', accounts_views.signup, name='signup'),
     url(r'^accounts/signup/customer/$', accounts_views.CustomerSignUpView.as_view(), name='customer_signup'),
     url(r'^accounts/signup/service/$', accounts_views.ServiceSignUpView.as_view(), name='service_signup'),
+
+    url(r'^chat/', chat_views.chat, name='index'),   
+    url(r'^chatbox/', chat_views.chatbox, name='chat'),   
+
 
     url(r'^oauth/', include('social_django.urls', namespace='social')),  # <--
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
@@ -46,3 +54,7 @@ urlpatterns = [
     url(r'^hello/$', hire_views.hello, name='hello'),
            
 ]
+
+
+if settings.DEBUG == True:
+    urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

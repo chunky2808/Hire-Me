@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'social_django',
+    'channels',
     'accounts',
     'hire',
     'easy_maps',
@@ -181,4 +182,11 @@ LOGIN_REDIRECT_URL = 'home'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+
+CHANNEL_LAYERS = {
+    'default' : {
+        'BACKEND' : 'asgiref.inmemory.ChannelLayer',
+        'ROUTING' : 'chat_app.routing.channel_routing',
+    }
+}
 

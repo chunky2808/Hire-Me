@@ -1,0 +1,8 @@
+.container-form{
+	margin-top: 100px;
+}
+
+form >.row{
+	padding: 20px;
+	border: 1px solid #a2bdf0;
+}
