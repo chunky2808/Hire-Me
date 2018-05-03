@@ -11,7 +11,7 @@ class NewTopicForm2(forms.ModelForm):
 	desc = forms.CharField(widget=forms.Textarea())
 	class Meta:
 		model =  Service_category
-		fields = ['namee','location','Address','desc','price','position']
+		fields = ['namee','location','Address','desc','price','position','pref_time','handle']
 
 
 class NewTopicForm3(forms.ModelForm):

@@ -31,6 +31,9 @@
       <ul class="list-group list-group-flush">
     <li class="list-group-item">{{service.price}} /Per Day</li>
     <li class="list-group-item">{{service.service}}</li>
+   <a href="{% url 'index' %}"> <li class="list-group-item">{{service.handle}}</li></a>
+    <li class="list-group-item">{{service.pref_time}}</li>
+    
      <li class="list-group-item">
           <div id="map"></div>
     <script>

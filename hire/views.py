@@ -58,6 +58,7 @@ def add_service(request):
 
 
 @login_required	
+@service_required
 def list_services_new(request,pk):
 	ser = get_object_or_404(Services,pk=pk)
 	li = ser.serces.order_by('-last_updated')

@@ -26,6 +26,8 @@ class Service_category(models.Model):
 	upvotes = models.IntegerField(default = 0)
 	downvotes = models.IntegerField(default =0)
 	distance = models.DecimalField(default=0.0,max_digits=25, decimal_places=3)
+	pref_time =  models.CharField(max_length = 50,null=True)
+	handle = models.CharField(max_length = 50,default='',null=True,unique=True)
 	
 	def __str__(self):
 		return self.namee
