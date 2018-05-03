@@ -10,7 +10,6 @@ from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
 from PIL import Image
 from accounts.decorators import service_required,customer_required
-#from tesseract import image_to_string
 from django.contrib.auth import get_user_model
 from math import cos, asin, sqrt
 
