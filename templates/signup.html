@@ -1,9 +1,24 @@
 {% extends 'base.html' %}
 
+ {% block link %}
+
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ {% endblock%}
+
 {% block body %}
-  <div class="container">
-    <h2>Sign up</h2>
-    <a href = "{% url 'customer_signup' %}"><button type="button" class="btn btn-primary">Signup as Customer</button></a>
-    <p></p>
-  <a href = "{% url 'service_signup' %}"><button type="button" class="btn btn-primary">Signup as Service</button></a>
+
+  <center><div class="container">
+  	<h1>Sign up</h1>
+  	<p></p>
+  	<p></p>
+    <div class="panel panel-default">
+    <div class="panel-body"> <a href = "{% url 'customer_signup' %}"><button type="button" class="btn btn-primary">Signup as Customer</button></a></div>
+      <p></p>
+   <div class="panel-body">  <a href = "{% url 'service_signup' %}"><button type="button" class="btn btn-primary">Signup as Service</button></a></div>
+  </div>
+</div></center>
 {% endblock %}

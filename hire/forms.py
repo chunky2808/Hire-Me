@@ -1,5 +1,5 @@
 from django import forms
-from .models import Services,Service_category,Page,verify
+from .models import Services,Service_category,Page
 
 class NewTopicForm(forms.ModelForm):
     #category = forms.CharField(widget=forms.Textarea(), max_length=400)
@@ -20,7 +20,7 @@ class NewTopicForm3(forms.ModelForm):
 		model =  Page
 		fields = ['Review']
 
-class verifyform(forms.ModelForm):
-	class Meta:
-		model = verify
-		fields = ['aadhar']
+# class verifyform(forms.ModelForm):
+# 	class Meta:
+# 		model = verify
+# 		fields = ['aadhar']

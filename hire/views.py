@@ -4,7 +4,7 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from django.shortcuts import render,get_object_or_404,redirect
 from .models import Services,Service_category,Page
-from .forms import NewTopicForm,NewTopicForm2,NewTopicForm3,verifyform
+from .forms import NewTopicForm,NewTopicForm2,NewTopicForm3
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
@@ -23,9 +23,13 @@ def home(request):
 		ser = Services.objects.filter(Q(name__icontains=query)| Q(category__icontains=query) |Q(last_updated__icontains=query))
 	return render(request,'service.html',{'services':ser})
 
+@login_required
 def list_services(request, pk):
 	ser = get_object_or_404(Services,pk=pk)
 	li = ser.serces.order_by('-last_updated').values()
+	print(request.user)
+	if(request.user=='NONE'):
+		print(hi)
 	for li in li:
 		lat = li['position'].latitude
 		lon = li['position'].longitude
@@ -142,21 +146,21 @@ def decrement(request,pk,Service_category_pk):
 	Service_category.objects.filter(namee=ser).update(downvotes = par)
 	return render(request,'review.html',{'service' : ser, 'revice' : res, 'review' : er,})
 
-@csrf_exempt
-@login_required
-def model_form_upload(request):
-    if request.method == 'POST':
-        form = verifyform(request.POST, request.FILES)
-        if form.is_valid():
-            new = form.save(commit=False)
-            new.user = request.user
-            form.save()
-            return redirect('maiee')
-    else:
-        form = verifyform()
-    return render(request, 'model_form_upload.html', {
-        'form': form
-    })
+# @csrf_exempt
+# @login_required
+# def model_form_upload(request):
+#     if request.method == 'POST':
+#         form = verifyform(request.POST, request.FILES)
+#         if form.is_valid():
+#             new = form.save(commit=False)
+#             new.user = request.user
+#             form.save()
+#             return redirect('maiee')
+#     else:
+#         form = verifyform()
+#     return render(request, 'model_form_upload.html', {
+#         'form': form
+#     })
 
 def hello(request):
 	# print(image_to_string(Image.open('/home/paras/Desktop/coding/my-project/Hire-Me!/Hire-Me/media/Details/None/123.png')))
