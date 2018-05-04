@@ -33,8 +33,8 @@ urlpatterns = [
     url(r'^accounts/signup/customer/$', accounts_views.CustomerSignUpView.as_view(), name='customer_signup'),
     url(r'^accounts/signup/service/$', accounts_views.ServiceSignUpView.as_view(), name='service_signup'),
 
-    url(r'^chat/', chat_views.chat, name='index'),   
-    url(r'^chatbox/', chat_views.chatbox, name='chat'),   
+    url(r'^chat/(?P<stri_id>\w+?)/', chat_views.chat, name='index'),   
+    url(r'^chatbox/(?P<stri_id>\w+?)/', chat_views.chatbox, name='chat'),   
 
 
     url(r'^oauth/', include('social_django.urls', namespace='social')),  # <--

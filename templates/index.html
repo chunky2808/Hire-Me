@@ -29,7 +29,7 @@ body {
 	<div class="container">		
 		
 		<div class="row container-form">
-			<form action="{% url 'chat' %}" class="col s6 offset-s3" method="POST" id="form">
+			<form action="{% url 'chat' handle %}" class="col s6 offset-s3" method="POST" id="form">
 			{% csrf_token %}
 				<div class="row">					
 					<input type="text" name="name" placeholder="Name" required>

@@ -31,7 +31,7 @@
       <ul class="list-group list-group-flush">
     <li class="list-group-item">{{service.price}} /Per Day</li>
     <li class="list-group-item">{{service.service}}</li>
-   <a href="{% url 'index' %}"> <li class="list-group-item">{{service.handle}}</li></a>
+   <a href="{% url 'index' service.handle %}"> <li class="list-group-item">{{service.handle}}</li></a>
     <li class="list-group-item">{{service.pref_time}}</li>
     
      <li class="list-group-item">
@@ -55,11 +55,12 @@
 
 </li>
      <li class="list-group-item">{{service.Address}}</li>
-     <li class="list-group-item">{{distance}} Km away</li>
+     <li class="list-group-item">{{service.distance}} Km away</li>
       <li class="list-group-item">{{service.upvotes}}
       <center><a href="{% url 'increment' revice.pk service.pk %}"> <button type='button' id="clap" class="btn btn-success" >Upvote</button></a></center></li>
        <li class="list-group-item">{{service.downvotes}}
        <center> <a href="{% url 'decrement' revice.pk service.pk %}"><button type='button' id="claap" class="btn btn-success">Downvote</button></a></center></li>
+    
     </div>
   </div></center>
   <br>
